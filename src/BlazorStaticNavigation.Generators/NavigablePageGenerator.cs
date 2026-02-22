@@ -14,11 +14,16 @@ public class NavigablePageGenerator : IIncrementalGenerator
         var rootNamespaceProvider = context.AnalyzerConfigOptionsProvider.Select(
             (provider, _) =>
             {
-                if (!provider.GlobalOptions.TryGetValue("build_property.RootNamespace", out var rootNamespace)
-                    || string.IsNullOrEmpty(rootNamespace))
+                if (
+                    !provider.GlobalOptions.TryGetValue(
+                        "build_property.RootNamespace",
+                        out var rootNamespace
+                    ) || string.IsNullOrEmpty(rootNamespace)
+                )
                 {
                     throw new System.InvalidOperationException(
-                        "RootNamespace build property is required but was not found.");
+                        "RootNamespace build property is required but was not found."
+                    );
                 }
                 return rootNamespace;
             }
