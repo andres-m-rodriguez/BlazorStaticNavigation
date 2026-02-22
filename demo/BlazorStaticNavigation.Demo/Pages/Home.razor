@@ -1,0 +1,34 @@
+@page "/"
+@inject NavigationManager NavigationManager
+
+<PageTitle>Home</PageTitle>
+
+<h1>BlazorStaticNavigation Demo</h1>
+
+<p>This demo showcases type-safe navigation using source-generated interfaces.</p>
+
+<h2>Navigation Examples</h2>
+
+<div class="navigation-demo">
+    <h3>Parameterless Navigation</h3>
+    <p>Navigate to Counter using static path:</p>
+    <button class="btn btn-primary" @onclick="@(() => NavigationManager.NavigateTo<Counter>())">
+        Go to Counter (using NavigateTo&lt;Counter&gt;)
+    </button>
+    <p><code>Counter.Path = "@(Counter.Path)"</code></p>
+
+    <h3>Parameterized Navigation</h3>
+    <p>Navigate to User page with parameters:</p>
+    <div class="input-group">
+        <label>User ID: </label>
+        <input type="number" @bind="userId" min="1" />
+        <button class="btn btn-primary" @onclick="@(() => NavigationManager.NavigateTo<UserPage, UserPage.NavigationParameters>(new(userId)))">
+            Go to User (using NavigateTo with parameters)
+        </button>
+    </div>
+    <p><code>UserPage.Path = "@(UserPage.Path)"</code></p>
+</div>
+
+@code {
+    private int userId = 1;
+}

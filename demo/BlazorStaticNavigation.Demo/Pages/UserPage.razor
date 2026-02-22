@@ -1,0 +1,35 @@
+@page "/user/{Id:int}"
+@inject NavigationManager NavigationManager
+
+<PageTitle>User @Id</PageTitle>
+
+<h1>User Details</h1>
+
+<p>This page demonstrates parameterized routing.</p>
+
+<div class="user-info">
+    <p><strong>User ID:</strong> @Id</p>
+    <p><strong>Route Template:</strong> <code>@(UserPage.Path)</code></p>
+    <p><strong>Generated Path:</strong> <code>@(UserPage.GetPathWithParameters(new(Id)))</code></p>
+</div>
+
+<hr />
+
+<h3>Navigate to another user:</h3>
+<div class="input-group">
+    <input type="number" @bind="nextUserId" min="1" />
+    <button class="btn btn-primary" @onclick="@(() => NavigationManager.NavigateTo<UserPage, NavigationParameters>(new(nextUserId)))">
+        Go to User @nextUserId
+    </button>
+</div>
+
+<hr />
+
+<button class="btn btn-secondary" @onclick="@(() => NavigationManager.NavigateTo<Home>())">Back to Home</button>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private int nextUserId = 2;
+}

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/BlazorStaticNavigation/BlazorStaticNavigation.csproj" />
+  <Project Path="src/BlazorStaticNavigation.Generators/BlazorStaticNavigation.Generators.csproj" />
+  <Project Path="demo/BlazorStaticNavigation.Demo/BlazorStaticNavigation.Demo.csproj" />
+</Solution>

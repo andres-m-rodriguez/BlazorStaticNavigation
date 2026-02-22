@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BlazorStaticNavigation\BlazorStaticNavigation.csproj" />
+    <ProjectReference Include="..\..\src\BlazorStaticNavigation.Generators\BlazorStaticNavigation.Generators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- Make .razor files available to the source generator -->
+  <ItemGroup>
+    <AdditionalFiles Include="Pages\**\*.razor" />
+    <AdditionalFiles Include="Components\**\*.razor" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <PackageId>BlazorStaticNavigation</PackageId>
+    <Version>1.0.0</Version>
+    <Description>Type-safe navigation for Blazor using source generators</Description>
+    <PackageTags>blazor;navigation;source-generator;roslyn</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.0-preview.1.25120.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlazorStaticNavigation.Generators\BlazorStaticNavigation.Generators.csproj" PrivateAssets="all" />
+    <None Include="..\BlazorStaticNavigation.Generators\bin\$(Configuration)\netstandard2.0\BlazorStaticNavigation.Generators.dll" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+  </ItemGroup>
+
+</Project>
