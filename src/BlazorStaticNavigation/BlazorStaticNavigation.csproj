@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>BlazorStaticNavigation</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Description>Type-safe navigation for Blazor using source generators</Description>
     <PackageTags>blazor;navigation;source-generator;roslyn</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
