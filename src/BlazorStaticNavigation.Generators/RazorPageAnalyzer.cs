@@ -82,23 +82,35 @@ internal static class RazorPageAnalyzer
             return rootNamespace;
 
         directory = directory.Replace('\\', '/');
-
         var parts = directory.Split('/');
+
+        // Find the project root folder - it typically matches the root namespace
+        // or its last segment (e.g., "MyApp.Client" folder or just "Client")
+        var rootNamespaceParts = rootNamespace.Split('.');
+        var rootNamespaceLastPart = rootNamespaceParts[rootNamespaceParts.Length - 1];
+
+        int rootIndex = -1;
+        for (int i = parts.Length - 1; i >= 0; i--)
+        {
+            if (parts[i].Equals(rootNamespace, StringComparison.OrdinalIgnoreCase) ||
+                parts[i].Equals(rootNamespaceLastPart, StringComparison.OrdinalIgnoreCase))
+            {
+                rootIndex = i;
+                break;
+            }
+        }
+
+        if (rootIndex == -1)
+            return rootNamespace;
+
         var namespaceParts = new List<string> { rootNamespace };
 
-        var foundRoot = false;
-        foreach (var part in parts)
+        // Add all folders after the root namespace folder
+        for (int i = rootIndex + 1; i < parts.Length; i++)
         {
-            if (part.Equals("Pages", StringComparison.OrdinalIgnoreCase) ||
-                part.Equals("Components", StringComparison.OrdinalIgnoreCase) ||
-                part.Equals("Shared", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrWhiteSpace(parts[i]))
             {
-                foundRoot = true;
-            }
-
-            if (foundRoot && !string.IsNullOrWhiteSpace(part))
-            {
-                namespaceParts.Add(part);
+                namespaceParts.Add(parts[i]);
             }
         }
 
